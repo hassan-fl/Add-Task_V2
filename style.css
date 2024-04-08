@@ -1,0 +1,170 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+
+    display: grid;
+    place-items: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    width: 60%;
+    min-height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    border-radius: 12px;
+    box-shadow: 4px 3px 4px #ccc,
+                -4px -3px 4px #ccc,
+                -4px 3px 4px #ccc,
+                4px -3px 4px #ccc;
+    padding: 1rem 2rem;
+}
+.side{
+    display: grid;
+    row-gap: 1rem;
+}
+
+.upper{
+    padding-block-end: 2rem;
+    border-bottom: 2px solid hsla(0, 4%, 39%, 0.3);
+    margin-block-end: 2rem;
+}
+
+.add,
+.filter{
+    position: relative;
+
+    margin-block-start: 10px;
+}
+label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+
+    font-size: 1rem;
+    transition: transform 400ms ease,
+                color 350ms ease,
+                font-size 350ms ease;
+}
+
+
+input[type="text"]{
+    width: 100%;
+    height: 30px;
+    /* margin-block-start: 25px; */
+    border: none;
+    outline: none;
+    border-bottom: 2px solid hsla(0, 4%, 39%, 0.3);
+
+    transition: border 400ms ease;
+
+    &::placeholder{
+        font-size: 1.2rem;
+    }
+}
+
+input[type="text"]:focus,
+input[type="text"]:focus-within{
+    border-bottom-color: green;
+
+    &::placeholder{
+        color: transparent;
+    }
+}
+
+input[type="text"]:focus + label{
+    opacity: 1;
+    transform: translateY(-25px);
+    font-size: 1.5rem;
+    color: green;
+}
+
+input:not([type="text"]){
+    width: 15%;
+    height: 50px;
+    border: none;
+
+    cursor: pointer;
+    
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: .15ch;
+
+    color: white;
+}
+
+[type="submit"]{
+    background-color: green;
+}
+[type="reset"]{
+    background-color: black;
+}
+
+.tasks{
+    --count:0;
+
+    display: grid;
+    grid-template-rows: repeat(var(--count),1fr);
+    row-gap: 2px;
+
+    padding-inline: 1rem;
+}
+.tasks > div{
+    height: 45px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem;
+    
+    background-color: green;
+
+    font-size: 1.3rem;
+    padding-block: 1.4rem;
+    font-weight: 500;
+    color: white;
+
+    p{
+        cursor: pointer;
+    }
+    /* [data-line="true"]{
+        text-decoration: line-through;
+    } */
+}
+div > i{
+    color: orange;
+    cursor: pointer;
+}
+
+
+@media  screen and (max-width:765px) {
+    .container{
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        height: 100vh;
+    }
+    input:not([type="text"]){
+        width: 30%;
+    }
+    .side{
+        margin-block: 2rem;
+    }
+    .add,
+    .filter{
+        margin-block: 1rem;
+        padding-block: 2rem;
+    }
+    .tasks{
+        margin-bottom: 2rem;
+    }
+}
